@@ -7,6 +7,7 @@ using MEC;
 using Hints;
 using UnityEngine;
 using Exiled.Events.EventArgs;
+using Exiled.API.Features;
 using Player = Exiled.API.Features.Player;
 
 namespace NoCuffedKill
@@ -14,6 +15,7 @@ namespace NoCuffedKill
     public class EventHandler
     {
         private static bool Reflect = NoCuffedKill.config.RelfectDamage;
+        private static bool Debug = NoCuffedKill.config.Debug;
 
 
         public static void OnPlayerHurt(HurtingEventArgs ev)
@@ -21,49 +23,58 @@ namespace NoCuffedKill
             Player A = ev.Attacker;
             Player T = ev.Target;
 
-            if(ev.Target.IsCuffed)
+            if (Debug)
+            {
+                Log.Info("IsCuffed");
+                Log.Info(T.IsCuffed);
+                Log.Info("Is Target NTF");
+                Log.Info(T.IsNTF);
+                Log.Info("Is Target CHI");
+                Log.Info(T.IsCHI);
+            }
+
+            if(T.IsCuffed)
             {
                 switch(T.Team)
                 {
                     case Team.CDP:
-
                         switch(A.Team)
                         {
                             case Team.MTF:
-                                T.Health += ev.Amount;
+
+                                T.Heal(ev.Amount);
                                 if (Reflect)
                                 {
-                                    A.Health -= ev.Amount;
+                                    A.Hurt(ev.Amount);
                                 }
                                 break;
-
                             case Team.RSC:
-                                T.Health += ev.Amount;
-                                if(Reflect)
+
+                                T.Heal(ev.Amount);
+                                if (Reflect)
                                 {
-                                    A.Health -= ev.Amount;
+                                    A.Hurt(ev.Amount);
                                 }
                                 break;
                         }
                         break;
-
                     case Team.RSC:
-
-                        switch(ev.Attacker.Team)
+                        switch(A.Team)
                         {
-                            case Team.CDP:
-                                T.Health += ev.Amount;
+                            case Team.CHI:
+
+                                T.Heal(ev.Amount);
                                 if (Reflect)
                                 {
-                                    A.Health -= ev.Amount;
+                                    A.Hurt(ev.Amount);
                                 }
                                 break;
+                            case Team.CDP:
 
-                            case Team.CHI:
-                                T.Health += ev.Amount;
+                                T.Heal(ev.Amount);
                                 if (Reflect)
                                 {
-                                    A.Health -= ev.Amount;
+                                    A.Hurt(ev.Amount);
                                 }
                                 break;
                         }
