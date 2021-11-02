@@ -18,8 +18,5 @@ namespace NoCuffedKill
 
         [Description("Whether or not the plugin should reflect damage")]
         public bool RelfectDamage { get; set; } = true;
-
-        [Description("Debug Mode")]
-        public bool Debug { get; set; } = true;
     }
 }

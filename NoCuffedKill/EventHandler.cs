@@ -15,23 +15,12 @@ namespace NoCuffedKill
     public class EventHandler
     {
         private static bool Reflect = NoCuffedKill.config.RelfectDamage;
-        private static bool Debug = NoCuffedKill.config.Debug;
 
 
         public static void OnPlayerHurt(HurtingEventArgs ev)
         {
             Player A = ev.Attacker;
             Player T = ev.Target;
-
-            if (Debug)
-            {
-                Log.Info("IsCuffed");
-                Log.Info(T.IsCuffed);
-                Log.Info("Is Target NTF");
-                Log.Info(T.IsNTF);
-                Log.Info("Is Target CHI");
-                Log.Info(T.IsCHI);
-            }
 
             if(T.IsCuffed)
             {
