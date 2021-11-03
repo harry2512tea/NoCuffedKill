@@ -18,5 +18,8 @@ namespace NoCuffedKill
 
         [Description("Whether or not the plugin should reflect damage")]
         public bool RelfectDamage { get; set; } = true;
+
+        [Description("whether or not the detainer can kill the detainee")]
+        public bool DetainerDamage { get; set; } = false;
     }
 }

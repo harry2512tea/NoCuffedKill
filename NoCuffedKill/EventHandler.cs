@@ -15,6 +15,7 @@ namespace NoCuffedKill
     public class EventHandler
     {
         private static bool Reflect = NoCuffedKill.config.RelfectDamage;
+        private static bool DetainerDamage = NoCuffedKill.config.DetainerDamage;
 
 
         public static void OnPlayerHurt(HurtingEventArgs ev)
@@ -24,50 +25,53 @@ namespace NoCuffedKill
 
             if(T.IsCuffed)
             {
-                switch(T.Team)
+                if (!(A == T.Cuffer) || DetainerDamage == false)
                 {
-                    case Team.CDP:
-                        switch(A.Team)
-                        {
-                            case Team.MTF:
+                    switch (T.Team)
+                    {
+                        case Team.CDP:
+                            switch (A.Team)
+                            {
+                                case Team.MTF:
 
-                                ev.IsAllowed = false;
-                                if (Reflect)
-                                {
-                                    A.Hurt(ev.Amount);
-                                }
-                                break;
-                            case Team.RSC:
+                                    ev.IsAllowed = false;
+                                    if (Reflect)
+                                    {
+                                        A.Hurt(ev.Amount);
+                                    }
+                                    break;
+                                case Team.RSC:
 
-                                ev.IsAllowed = false;
-                                if (Reflect)
-                                {
-                                    A.Hurt(ev.Amount);
-                                }
-                                break;
-                        }
-                        break;
-                    case Team.RSC:
-                        switch(A.Team)
-                        {
-                            case Team.CHI:
+                                    ev.IsAllowed = false;
+                                    if (Reflect)
+                                    {
+                                        A.Hurt(ev.Amount);
+                                    }
+                                    break;
+                            }
+                            break;
+                        case Team.RSC:
+                            switch (A.Team)
+                            {
+                                case Team.CHI:
 
-                                ev.IsAllowed = false;
-                                if (Reflect)
-                                {
-                                    A.Hurt(ev.Amount);
-                                }
-                                break;
-                            case Team.CDP:
+                                    ev.IsAllowed = false;
+                                    if (Reflect)
+                                    {
+                                        A.Hurt(ev.Amount);
+                                    }
+                                    break;
+                                case Team.CDP:
 
-                                ev.IsAllowed = false;
-                                if (Reflect)
-                                {
-                                    A.Hurt(ev.Amount);
-                                }
-                                break;
-                        }
-                        break;
+                                    ev.IsAllowed = false;
+                                    if (Reflect)
+                                    {
+                                        A.Hurt(ev.Amount);
+                                    }
+                                    break;
+                            }
+                            break;
+                    }
                 }
             }
         }
