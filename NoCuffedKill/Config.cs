@@ -17,9 +17,12 @@ namespace NoCuffedKill
         public bool IsEnabled { get; set; } = true;
 
         [Description("Whether or not the plugin should reflect damage")]
-        public bool RelfectDamage { get; set; } = true;
+        public bool RelfectCuffedDamage { get; set; } = true;
 
         [Description("whether or not the detainer can kill the detainee")]
         public bool DetainerDamage { get; set; } = false;
+
+        [Description("Whether or not attempted team killing damage should be reflected")]
+        public bool ReflectTKDamage { get; set; } = false;
     }
 }

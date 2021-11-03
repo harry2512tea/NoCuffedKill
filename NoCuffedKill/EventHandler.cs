@@ -16,18 +16,22 @@ namespace NoCuffedKill
     {
         public static void OnPlayerHurt(HurtingEventArgs ev)
         {
-            bool Reflect = NoCuffedKill.config.RelfectDamage;
-            bool DetainerDamage = NoCuffedKill.config.DetainerDamage;
             Player A = ev.Attacker;
             Player T = ev.Target;
 
-            if(T.IsCuffed && (A != T.Cuffer || DetainerDamage == false) && (A.Side != T.Side))
+            if(T.IsCuffed && (A != T.Cuffer || NoCuffedKill.config.DetainerDamage == false) && (A.Side != T.Side))
             {
                 ev.IsAllowed = false;
-                if (Reflect)
+                if (NoCuffedKill.config.RelfectCuffedDamage)
                 {
                     A.Hurt(ev.Amount);
                 }
+            }
+
+            if(NoCuffedKill.config.ReflectTKDamage && A.Side == T.Side && A.Team !=Team.SCP)
+            {
+                ev.IsAllowed = false;
+                A.Hurt(ev.Amount, ev.DamageType);
             }
         }
     }
