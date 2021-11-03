@@ -31,7 +31,7 @@ namespace NoCuffedKill
                         {
                             case Team.MTF:
 
-                                T.Heal(ev.Amount);
+                                ev.IsAllowed = false;
                                 if (Reflect)
                                 {
                                     A.Hurt(ev.Amount);
@@ -39,7 +39,7 @@ namespace NoCuffedKill
                                 break;
                             case Team.RSC:
 
-                                T.Heal(ev.Amount);
+                                ev.IsAllowed = false;
                                 if (Reflect)
                                 {
                                     A.Hurt(ev.Amount);
@@ -52,7 +52,7 @@ namespace NoCuffedKill
                         {
                             case Team.CHI:
 
-                                T.Heal(ev.Amount);
+                                ev.IsAllowed = false;
                                 if (Reflect)
                                 {
                                     A.Hurt(ev.Amount);
@@ -60,7 +60,7 @@ namespace NoCuffedKill
                                 break;
                             case Team.CDP:
 
-                                T.Heal(ev.Amount);
+                                ev.IsAllowed = false;
                                 if (Reflect)
                                 {
                                     A.Hurt(ev.Amount);
