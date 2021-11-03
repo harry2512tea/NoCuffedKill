@@ -14,64 +14,19 @@ namespace NoCuffedKill
 {
     public class EventHandler
     {
-        private static bool Reflect = NoCuffedKill.config.RelfectDamage;
-        private static bool DetainerDamage = NoCuffedKill.config.DetainerDamage;
-
-
         public static void OnPlayerHurt(HurtingEventArgs ev)
         {
+            bool Reflect = NoCuffedKill.config.RelfectDamage;
+            bool DetainerDamage = NoCuffedKill.config.DetainerDamage;
             Player A = ev.Attacker;
             Player T = ev.Target;
 
-            if(T.IsCuffed)
+            if(T.IsCuffed && (A != T.Cuffer || DetainerDamage == false) && (A.Side != T.Side))
             {
-                if (!(A == T.Cuffer) || DetainerDamage == false)
+                ev.IsAllowed = false;
+                if (Reflect)
                 {
-                    switch (T.Team)
-                    {
-                        case Team.CDP:
-                            switch (A.Team)
-                            {
-                                case Team.MTF:
-
-                                    ev.IsAllowed = false;
-                                    if (Reflect)
-                                    {
-                                        A.Hurt(ev.Amount);
-                                    }
-                                    break;
-                                case Team.RSC:
-
-                                    ev.IsAllowed = false;
-                                    if (Reflect)
-                                    {
-                                        A.Hurt(ev.Amount);
-                                    }
-                                    break;
-                            }
-                            break;
-                        case Team.RSC:
-                            switch (A.Team)
-                            {
-                                case Team.CHI:
-
-                                    ev.IsAllowed = false;
-                                    if (Reflect)
-                                    {
-                                        A.Hurt(ev.Amount);
-                                    }
-                                    break;
-                                case Team.CDP:
-
-                                    ev.IsAllowed = false;
-                                    if (Reflect)
-                                    {
-                                        A.Hurt(ev.Amount);
-                                    }
-                                    break;
-                            }
-                            break;
-                    }
+                    A.Hurt(ev.Amount);
                 }
             }
         }
