@@ -1,5 +1,5 @@
 # NoCuffedKill
-A simple plugin that prevents players who are Handcuffed from revieving damage from their enemy teams (excluding SCPs). <br>
+A simple plugin that prevents players who are Handcuffed from receiving damage from their enemy teams (excluding SCPs). <br>
 This plugin also offers an option to reflect damage back upon the attacker!
 
 Default Config:
