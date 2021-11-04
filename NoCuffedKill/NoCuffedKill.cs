@@ -17,7 +17,7 @@ namespace NoCuffedKill
         public EventHandler EventHandler;
         public override string Name { get; } = "NoCuffedKill";
         public override string Author { get; } = "Thire";
-        public override Version Version { get; } = new Version(1, 0, 3);
+        public override Version Version { get; } = new Version(1, 1, 0);
         public override Version RequiredExiledVersion { get; } = new Version(3, 3, 1);
         public override string Prefix { get; } = "NCK";
         public override PluginPriority Priority { get; } = PluginPriority.Medium;
