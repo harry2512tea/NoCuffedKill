@@ -16,23 +16,43 @@ namespace NoCuffedKill
     {
         public static void OnPlayerHurt(HurtingEventArgs ev)
         {
-            Player A = ev.Attacker;
-            Player T = ev.Target;
 
-            if(T.IsCuffed && (A != T.Cuffer || NoCuffedKill.config.DetainerDamage == false) && (A.Side != T.Side))
+
+            try
             {
-                ev.IsAllowed = false;
-                if (NoCuffedKill.config.RelfectCuffedDamage)
+                Player A = ev.Attacker;
+                Player T = ev.Target;
+                if (A != T)
                 {
-                    A.Hurt(ev.Amount);
+                    if (T.IsCuffed && (A != T.Cuffer || NoCuffedKill.config.DetainerDamage == false) && (A.Side != T.Side))
+                    {
+                        ev.IsAllowed = false;
+                        if (NoCuffedKill.config.RelfectCuffedDamage)
+                        {
+                            A.Hurt(ev.Amount, ev.DamageType);
+                        }
+                    }
+
+                    if (NoCuffedKill.config.ReflectTKDamage && A.Side == T.Side && A.Team != Team.SCP)
+                    {
+                        ev.IsAllowed = false;
+                        if (ev.DamageType == DamageTypes.Grenade && NoCuffedKill.config.ReflectGrenadeTKDamage)
+                        {
+                            A.Hurt(ev.Amount, ev.DamageType);
+                        }
+                        else if (ev.DamageType != DamageTypes.Grenade && ev.DamageType != DamageTypes.Decont && ev.DamageType != DamageTypes.Falldown)
+                        {
+                            A.Hurt(ev.Amount, ev.DamageType);
+                        }
+                    }
                 }
             }
-
-            if(NoCuffedKill.config.ReflectTKDamage && A.Side == T.Side && A.Team !=Team.SCP)
+            catch
             {
-                ev.IsAllowed = false;
-                A.Hurt(ev.Amount, ev.DamageType);
+                return;
             }
+
+
         }
     }
 }

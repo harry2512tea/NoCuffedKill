@@ -22,7 +22,10 @@ namespace NoCuffedKill
         [Description("whether or not the detainer can kill the detainee")]
         public bool DetainerDamage { get; set; } = false;
 
-        [Description("Whether or not attempted team killing damage should be reflected")]
-        public bool ReflectTKDamage { get; set; } = false;
+        [Description("Whether or not team killing damage should be reflected, not including grenade damage (Friendly Fire must be enabled)")]
+        public bool ReflectTKDamage { get; set; } = true;
+
+        [Description("Whether or not to reflect friendly grenade damage")]
+        public bool ReflectGrenadeTKDamage { get; set; } = true;
     }
 }
