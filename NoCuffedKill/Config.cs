@@ -17,9 +17,15 @@ namespace NoCuffedKill
         public bool IsEnabled { get; set; } = true;
 
         [Description("Whether or not the plugin should reflect damage")]
-        public bool RelfectDamage { get; set; } = true;
+        public bool RelfectCuffedDamage { get; set; } = true;
 
         [Description("whether or not the detainer can kill the detainee")]
         public bool DetainerDamage { get; set; } = false;
+
+        [Description("Whether or not team killing damage should be reflected, not including grenade damage (Friendly Fire must be enabled)")]
+        public bool ReflectTKDamage { get; set; } = true;
+
+        [Description("Whether or not to reflect friendly grenade damage")]
+        public bool ReflectGrenadeTKDamage { get; set; } = true;
     }
 }
