@@ -7,5 +7,11 @@ Default Config:
 NCK:<br>
  Enable or disable the plugin <br>
  is_enabled: true <br>
- Whether or not the plugin should reflect damage <br>
- relfect_damage: true <br>
+ Whether or not the plugin should reflect cuffed damage <br>
+ relfectCuffedDamage: true <br>
+ whether or not the detainer can kill the detainee <br>
+ detainerDamage: false <br>
+ whether or not team killing damage should be reflected, not including grenade damage (friendly fire must be enabled) <br>
+ reflectTKDamage: true <br>
+ whether or not to reflect friendly grenade damage <br>
+ reflectGrenadeTKDamage: true <br>
